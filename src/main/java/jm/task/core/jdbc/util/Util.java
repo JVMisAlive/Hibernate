@@ -2,7 +2,6 @@ package jm.task.core.jdbc.util;
 
 
 import jm.task.core.jdbc.model.User;
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -12,7 +11,6 @@ import org.hibernate.service.ServiceRegistry;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 public class Util {
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
@@ -30,8 +28,6 @@ public class Util {
         configuration.setProperty("hibernate.connection.username", "root");
         configuration.setProperty("hibernate.connection.password", "Root1067!");
         configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
-        //configuration.setProperty("hibernate.current_session_context_class", "thread");
-        //configuration.addPackage("jm.task.core.jdbc.model.User");
         configuration.addAnnotatedClass(User.class);
         return configuration;
     }
