@@ -28,9 +28,10 @@ public class UserDaoHibernateImpl implements UserDao {
                     " last_name VARCHAR(32) null, " +
                     " age TINYINT)").addEntity(User.class).executeUpdate();
             transaction.commit();
-            session.close();
         } catch (HibernateException ex) {
             ex.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
@@ -42,9 +43,10 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createSQLQuery("DROP TABLE IF EXISTS Users")
                     .addEntity(User.class).executeUpdate();
             transaction.commit();
-            session.close();
         } catch (HibernateException ex) {
             ex.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
@@ -55,9 +57,10 @@ public class UserDaoHibernateImpl implements UserDao {
             Transaction transaction = session.beginTransaction();
             session.save(new User(name, lastName, age));
             transaction.commit();
-            session.close();
         } catch (HibernateException ex) {
             ex.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
@@ -69,9 +72,10 @@ public class UserDaoHibernateImpl implements UserDao {
             User user = session.get(User.class, id);
             session.delete(user);
             transaction.commit();
-            session.close();
         } catch (HibernateException ex) {
             ex.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
@@ -88,9 +92,10 @@ public class UserDaoHibernateImpl implements UserDao {
                     "SELECT * FROM Users")
                     .addEntity(User.class).list();
             transaction.commit();
-            session.close();
         } catch (HibernateException ex) {
             ex.printStackTrace();
+        } finally {
+            session.close();
         }
         return users;
     }
@@ -103,9 +108,10 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createSQLQuery("DELETE FROM Users")
                     .addEntity(User.class).executeUpdate();
             transaction.commit();
-            session.close();
         } catch (HibernateException ex) {
             ex.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 }
